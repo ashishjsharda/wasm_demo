@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rust and WebAssembly</title>
+</head>
+<body>
+<h1>Rust and WebAssembly Demo</h1>
+<button onclick="fetchData()">Fetch Data</button>
+<pre id="data"></pre>
+
+<script type="module">
+    import init, { fetch_data } from "./pkg/wasm_demo.js";
+
+    async function run() {
+        await init();
+    }
+
+    run();
+
+    async function fetchData() {
+        const data = await fetch_data();
+        document.getElementById("data").innerText = JSON.stringify(data, null, 2);
+    }
+</script>
+</body>
+</html>
